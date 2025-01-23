@@ -68,9 +68,11 @@ Replace your_mongo_connection_string with your MongoDB URI and your_jwt_secret w
      "username": "testuser",
      "email": "test@example.com",
      "password": "yourpassword",
-     "role": "User" // Optional, default is "User"
+     "role": "User"
    }
    ```
+
+   > role: default is "User" or Optional -> "Admin" , "Editor"
 
 - Response:
 
