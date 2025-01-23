@@ -147,15 +147,15 @@ Replace your_mongo_connection_string with your MongoDB URI and your_jwt_secret w
    ```
 
 - Response:
-  ````json
+  ```json
   {
-  "message": "Blog assigned successfully",
-  "blog": {
-  "\_id": "blogId",
-  "assignedEditor": "editorUserId"
+    "message": "Blog assigned successfully",
+    "blog": {
+      "_id": "blogId",
+      "assignedEditor": "editorUserId"
+    }
   }
-  }```
-  ````
+  ```
 
 5. Edit Blog (Editor only)
 
