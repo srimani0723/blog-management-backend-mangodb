@@ -72,6 +72,10 @@ const authorize = (role) => (req, res, next) => {
 
 // Routes
 // User Registration
+app.get("/", (req, res) => {
+  res.send("Successfully loaded");
+});
+
 app.post("/register", async (req, res) => {
   const { username, email, password, role } = req.body;
 
