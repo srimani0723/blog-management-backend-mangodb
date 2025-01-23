@@ -36,6 +36,7 @@ A role-based Blog Management API built with Node.js, Express, and MongoDB. The A
     ```
 
 3.  Set up environment variables
+
     Create a .env file in the root of your project and add the following:
 
     ```bash
@@ -57,7 +58,9 @@ Replace your_mongo_connection_string with your MongoDB URI and your_jwt_secret w
 ## Authentication
 
 1. Register User
-   Endpoint: POST /register
+
+   Endpoint: `POST /register`
+
    Body:
 
    ```json
@@ -78,8 +81,11 @@ Replace your_mongo_connection_string with your MongoDB URI and your_jwt_secret w
   ```
 
 2. Login User
-   Endpoint: POST /login
+
+   Endpoint: `POST /login`
+
    Body:
+
    ```json
    {
      "email": "test@example.com",
@@ -98,9 +104,13 @@ Replace your_mongo_connection_string with your MongoDB URI and your_jwt_secret w
 ## Blog Management
 
 3. Create Blog (Admin only)
-   Endpoint: POST /blogs
+
+   Endpoint: `POST /blogs`
+
    Headers: Authorization: Bearer <JWT_TOKEN>
+
    Body:
+
    ```json
    {
      "title": "My First Blog",
@@ -123,9 +133,13 @@ Replace your_mongo_connection_string with your MongoDB URI and your_jwt_secret w
   ```
 
 4. Assign Blog to Editor (Admin only)
-   Endpoint: PUT /blogs/:id/assign
+
+   Endpoint: `PUT /blogs/:id/assign`
+
    Headers: Authorization: Bearer <JWT_TOKEN>
+
    Body:
+
    ```json
    {
      "editorId": "editorUserId"
@@ -144,30 +158,36 @@ Replace your_mongo_connection_string with your MongoDB URI and your_jwt_secret w
   ````
 
 5. Edit Blog (Editor only)
-   Endpoint: PUT /blogs/:id
+
+   Endpoint: `PUT /blogs/:id`
+
    Headers: Authorization: Bearer <JWT_TOKEN>
+
    Body:
 
-   ````json
-   {
-   "title": "Updated Blog Title",
-   "content": "Updated blog content."
-   }```
-
-   - Response:
    ```json
    {
-   "message": "Blog updated successfully",
-   "blog": {
-       "_id": "blogId",
-       "title": "Updated Blog Title",
-       "content": "Updated blog content."
+     "title": "Updated Blog Title",
+     "content": "Updated blog content."
    }
-   }
-   ````
+   ```
+
+- Response:
+  ```json
+  {
+    "message": "Blog updated successfully",
+    "blog": {
+      "_id": "blogId",
+      "title": "Updated Blog Title",
+      "content": "Updated blog content."
+    }
+  }
+  ```
 
 6. View Blogs
-   Endpoint: GET /blogs
+
+   Endpoint: `GET /blogs`
+
    Headers: Authorization: Bearer <JWT_TOKEN>
 
 - Response:
@@ -195,9 +215,13 @@ Replace your_mongo_connection_string with your MongoDB URI and your_jwt_secret w
   ```
 
 7. Add Comment to Blog
-   Endpoint: POST /blogs/:id/comments
+
+   Endpoint: `POST /blogs/:id/comments`
+
    Headers: Authorization: Bearer <JWT_TOKEN>
+
    Body:
+
    ```json
    {
      "content": "This is a comment on the blog."
@@ -221,7 +245,9 @@ Replace your_mongo_connection_string with your MongoDB URI and your_jwt_secret w
   ```
 
 8. Delete Comment (User)
-   Endpoint: DELETE /blogs/:blogId/comments/:commentId
+
+   Endpoint: `DELETE /blogs/:blogId/comments/:commentId`
+
    Headers: Authorization: Bearer <JWT_TOKEN>
 
 - Response:
@@ -264,3 +290,27 @@ For production, you can deploy the API to platforms like:
 - AWS (EC2, Lambda)
 - DigitalOcean
   Ensure to set environment variables (like MONGO_URI and JWT_SECRET) in the platform’s environment settings.
+
+> vercel
+
+Add `vercel.json` file and copy this
+
+```bash
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "/app.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/app.js"
+    }
+  ]
+}
+```
+
+and then deploy in vercel
