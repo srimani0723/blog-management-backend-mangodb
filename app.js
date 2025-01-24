@@ -182,6 +182,23 @@ app.put("/blogs/:id", authenticate, authorize("Editor"), async (req, res) => {
   }
 });
 
+// Delete Blog (Admin only)
+app.delete("/blogs/:id", authenticate, authorize("Admin"), async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const blog = await Blog.findById(id);
+    if (!blog) return res.status(404).json({ message: "Blog not found" });
+
+    await blog.deleteOne(); // Delete the blog document
+    res.status(200).json({ message: "Blog deleted successfully" });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Error deleting blog", error: err.message });
+  }
+});
+
 // View Blogs (All users)
 app.get("/blogs", authenticate, async (req, res) => {
   try {
