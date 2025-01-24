@@ -253,6 +253,7 @@ Replace your_mongo_connection_string with your MongoDB URI and your_jwt_secret w
    Headers: Authorization: Bearer <JWT_TOKEN>
 
 - Response:
+
   ```json
   {
     "message": "Comment deleted successfully",
@@ -260,6 +261,19 @@ Replace your_mongo_connection_string with your MongoDB URI and your_jwt_secret w
       "_id": "blogId",
       "comments": []
     }
+  }
+  ```
+
+9. Delete Blog (Admin)
+
+   Endpoint: `DELETE /blogs/:blogId`
+
+   Headers: Authorization: Bearer <JWT_TOKEN>
+
+- Response:
+  ```json
+  {
+    "message": "Blog deleted successfully"
   }
   ```
 
