@@ -227,17 +227,24 @@ app.delete(
       const blog = await Blog.findById(blogId);
       if (!blog) return res.status(404).json({ message: "Blog not found" });
 
-      const comment = blog.comments.id(commentId);
-      if (!comment)
+      // Find the index of the comment
+      const commentIndex = blog.comments.findIndex(
+        (comment) => comment._id.toString() === commentId
+      );
+
+      if (commentIndex === -1)
         return res.status(404).json({ message: "Comment not found" });
 
-      if (comment.user.toString() !== req.user.id)
+      // Check if the user owns the comment
+      if (blog.comments[commentIndex].user.toString() !== req.user.id)
         return res
           .status(403)
           .json({ message: "You can only delete your own comments" });
 
-      comment.remove();
+      // Remove the comment using splice
+      blog.comments.splice(commentIndex, 1);
       await blog.save();
+
       res.status(200).json({ message: "Comment deleted successfully", blog });
     } catch (err) {
       res
