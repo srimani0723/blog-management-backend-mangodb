@@ -7,6 +7,9 @@ A role-based Blog Management API built with Node.js, Express, and MongoDB. The A
 > Deployed in the vercel, the following:
 > [https://blog-management-backend-mangodb.vercel.app/](https://blog-management-backend-mangodb.vercel.app/)
 
+> Deployed in the render, the following:
+> [https://blog-management-backend-mangodb.onrender.com/](https://blog-management-backend-mangodb.onrender.com/)
+
 ## Features
 
 - User Registration and Login
